@@ -1,5 +1,9 @@
 function linearSearchRecursive(array, item) {
-  return linearSearchRecursiveWithRange(array, 0, array.length, item)
+  try {
+    return linearSearchRecursiveWithRange(array, 0, array.length, item)
+  } catch(error) {
+    return error;
+  }
 }
 
 function linearSearchRecursiveWithRange(array, low, high, item) {
