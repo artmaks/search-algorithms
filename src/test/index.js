@@ -1,25 +1,34 @@
 import assert from 'assert'
 
 import { linearSearchRecursive, linearSearch } from '../algorithms/linear'
+import { binarySearchRecursive, binarySearch } from '../algorithms/binary'
 import { arrays } from './data'
 
-const listOfSortFunctions = [linearSearchRecursive, linearSearch]
+const listOfSortFunctions = [linearSearchRecursive, linearSearch, binarySearchRecursive, binarySearch]
+
+function isBinary(name) {
+  return name.indexOf('binary') !== -1;
+}
 
 describe('Testing of all search algorithms', function () {
   listOfSortFunctions.forEach((sortFunction) => {
     const functionName = sortFunction.name; 
     describe(`testing ${functionName}` , function () {
 
-      describe('simple static testing', function () {
+      describe('simple static testing (no sorted)', function () {
         it('should find value 3 at index 2', function () {
+          if(isBinary(functionName)) 
+            this.skip();
           assert.equal(2, sortFunction([1, 2, 3], 3))
         })
       });
     
-      describe('static testing from prepared data file', function () {
+      describe('static testing from prepared data file (no sorted)', function () {
         arrays.forEach((arr) => {
           arr.answers.forEach((answer) => {
             it(`should find value ${answer.item} at index ${answer.index}`, function () {
+              if(isBinary(functionName)) 
+                this.skip();
               console.time('timer');
               assert.equal(answer.index, sortFunction(arr.array, answer.item))
               console.timeEnd('timer');
@@ -28,7 +37,7 @@ describe('Testing of all search algorithms', function () {
         })
       });
 
-      describe('large array (10000 items) with element at the end', function () {
+      describe('large array (10000 items) with element at the end (sorted)', function () {
         const largeArray = new Array(999999).fill(999);
         const item = 1000;
         largeArray[largeArray.length - 1] = item;
