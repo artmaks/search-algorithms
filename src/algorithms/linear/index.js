@@ -1,6 +1,6 @@
 function linearSearchRecursive(array, item) {
   try {
-    return linearSearchRecursiveWithRange(array, 0, array.length, item)
+    return linearSearchRecursiveWithRange(array, 0, array.length - 1, item)
   } catch(error) {
     return error;
   }
@@ -18,12 +18,12 @@ function linearSearchRecursiveWithRange(array, low, high, item) {
 
 function linearSearch(array, item) {
   const min = 0;
-  const max = array.length;
+  const max = array.length - 1;
   return linearSearchWithRange(array, min, max, item);
 }
 
 function linearSearchWithRange(array, min, max, item) {
-  while(max > min) {
+  while(max >= min) {
     if(array[min] === item)
       return min;
     min++;
