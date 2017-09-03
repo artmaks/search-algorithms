@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/babel-node index.js",
-    "test": "./node_modules/mocha/bin/mocha src/test --compilers js:babel-core/register -s 0"
+    "test": "./node_modules/mocha/bin/mocha src/algorithms --recursive --compilers js:babel-core/register -s 0"
   },
   "author": "artmaks",
   "license": "ISC",

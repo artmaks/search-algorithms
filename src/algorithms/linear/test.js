@@ -1,14 +1,9 @@
 import assert from 'assert'
 
-import { linearSearchRecursive, linearSearch } from '../algorithms/linear'
-import { binarySearchRecursive, binarySearch } from '../algorithms/binary'
-import { arrays } from './data'
+import { linearSearchRecursive, linearSearch } from './index'
+import { arrays } from '../../data/arrays'
 
-const listOfSortFunctions = [linearSearchRecursive, linearSearch, binarySearchRecursive, binarySearch]
-
-function isBinary(name) {
-  return name.indexOf('binary') !== -1;
-}
+const listOfSortFunctions = [linearSearchRecursive, linearSearch]
 
 describe('Testing of all search algorithms', function () {
   listOfSortFunctions.forEach((sortFunction) => {
@@ -17,8 +12,6 @@ describe('Testing of all search algorithms', function () {
 
       describe('simple static testing (no sorted)', function () {
         it('should find value 3 at index 2', function () {
-          if(isBinary(functionName)) 
-            this.skip();
           assert.equal(2, sortFunction([1, 2, 3], 3))
         })
       });
@@ -27,8 +20,6 @@ describe('Testing of all search algorithms', function () {
         arrays.forEach((arr) => {
           arr.answers.forEach((answer) => {
             it(`should find value ${answer.item} at index ${answer.index}`, function () {
-              if(isBinary(functionName)) 
-                this.skip();
               console.time('timer');
               assert.equal(answer.index, sortFunction(arr.array, answer.item))
               console.timeEnd('timer');
