@@ -3,11 +3,11 @@ import assert from 'assert'
 import { binarySearchRecursive, binarySearch } from './index'
 import { arrays } from '../../data/arrays'
 
-const listOfSortFunctions = [binarySearchRecursive, binarySearch]
+const listOfSearchFunctions = [binarySearchRecursive, binarySearch]
 
 describe('Testing of all search algorithms', function () {
-  listOfSortFunctions.forEach((sortFunction) => {
-    const functionName = sortFunction.name; 
+  listOfSearchFunctions.forEach((searchFunction) => {
+    const functionName = searchFunction.name; 
     describe(`testing ${functionName}` , function () {
 
       describe('large array (10000 items) with element at the end (sorted)', function () {
@@ -18,12 +18,7 @@ describe('Testing of all search algorithms', function () {
 
         it(`should find value ${item} at index ${answer}`, function () {
           console.time('timer');
-          if(functionName === 'linearSearchRecursive') {
-            assert.equal('RangeError', sortFunction(largeArray, item).name)
-            console.error('RangeError')
-          } else {
-            assert.equal(answer, sortFunction(largeArray, item))
-          }
+          assert.equal(answer, searchFunction(largeArray, item))
           console.timeEnd('timer');
         });
       });

@@ -3,16 +3,16 @@ import assert from 'assert'
 import { linearSearchRecursive, linearSearch } from './index'
 import { arrays } from '../../data/arrays'
 
-const listOfSortFunctions = [linearSearchRecursive, linearSearch]
+const listOfSearchFunctions = [linearSearchRecursive, linearSearch]
 
 describe('Testing of all search algorithms', function () {
-  listOfSortFunctions.forEach((sortFunction) => {
-    const functionName = sortFunction.name; 
+  listOfSearchFunctions.forEach((searchFunction) => {
+    const functionName = searchFunction.name; 
     describe(`testing ${functionName}` , function () {
 
       describe('simple static testing (no sorted)', function () {
         it('should find value 3 at index 2', function () {
-          assert.equal(2, sortFunction([1, 2, 3], 3))
+          assert.equal(2, searchFunction([1, 2, 3], 3))
         })
       });
     
@@ -21,7 +21,7 @@ describe('Testing of all search algorithms', function () {
           arr.answers.forEach((answer) => {
             it(`should find value ${answer.item} at index ${answer.index}`, function () {
               console.time('timer');
-              assert.equal(answer.index, sortFunction(arr.array, answer.item))
+              assert.equal(answer.index, searchFunction(arr.array, answer.item))
               console.timeEnd('timer');
             });
           })
@@ -37,10 +37,10 @@ describe('Testing of all search algorithms', function () {
         it(`should find value ${item} at index ${answer}`, function () {
           console.time('timer');
           if(functionName === 'linearSearchRecursive') {
-            assert.equal('RangeError', sortFunction(largeArray, item).name)
+            assert.equal('RangeError', searchFunction(largeArray, item).name)
             console.error('RangeError')
           } else {
-            assert.equal(answer, sortFunction(largeArray, item))
+            assert.equal(answer, searchFunction(largeArray, item))
           }
           console.timeEnd('timer');
         });
